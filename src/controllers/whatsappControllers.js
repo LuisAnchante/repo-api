@@ -1,10 +1,10 @@
 
 const  VerifyToken = (rep,res) => {
-    res.send("hola verificado");
+    res.send("hola mensaje verificado");
 }
 
 const  ReceivedMessage = (rep,res) => {
-    res.send("hola recibido");
+    res.send("hola mensaje recibido");
 }
 
 
