@@ -5,7 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
-app.use("/whatsapp", apiRoute);
+app.use("/webhooks", apiRoute);
 
 app.listen(PORT, () => {console.log("el puerto es: " + PORT)});
 
