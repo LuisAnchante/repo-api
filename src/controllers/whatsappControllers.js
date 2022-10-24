@@ -1,7 +1,7 @@
 
 const fs = require("fs");
 const myConsole = new console.Console(fs.createWriteStream("./logs.txt"));
-
+const processMessage = require("../shared/processMessage");
 
 const VerifyToken = (rep, res) => {
     try{
@@ -28,17 +28,19 @@ const ReceivedMessage = (req, res) => {
         var value = changes["value"];
         var messageObject = value["messages"];
 
-        if(typeof messageObject != "undefined"){
-            var messages = messageObject[0];
-            var number = messages["from"];
+        // if(typeof messageObject != "undefined"){
+        //     var messages = messageObject[0];
+        //     var number = messages["from"];
 
-            var text = GetTextUser(messages);
+        //     var text = GetTextUser(messages);
 
-            if(text != ""){
-                processMessage.Process(text, number);
-            }
+        //     if(text != ""){
+        //         processMessage.Process(text, number);
+        //     }
 
-        }
+        // }
+
+        myConsole.log(messageObject);
 
         res.send("EVENT_RECEIVED");
     }catch(e){
@@ -47,10 +49,7 @@ const ReceivedMessage = (req, res) => {
     }
 }
 
-module.exports = {
-  VerifyToken,
-  ReceivedMessage,
-};
+
 
 // const fs = require("fs");
 // const myConsole = new console.Console(fs.createWriteStream("./logs.txt"));
@@ -99,32 +98,32 @@ module.exports = {
 //     }
 // }
 
-// function GetTextUser(messages){
-//     var text = "";
-//     var typeMessge = messages["type"];
-//     if(typeMessge == "text"){
-//         text = (messages["text"])["body"];
-//     }
-//     else if(typeMessge == "interactive"){
+function GetTextUser(messages){
+    var text = "";
+    var typeMessge = messages["type"];
+    if(typeMessge == "text"){
+        text = (messages["text"])["body"];
+    }
+    else if(typeMessge == "interactive"){
 
-//         var interactiveObject = messages["interactive"];
-//         var typeInteractive = interactiveObject["type"];
+        var interactiveObject = messages["interactive"];
+        var typeInteractive = interactiveObject["type"];
 
-//         if(typeInteractive == "button_reply"){
-//             text = (interactiveObject["button_reply"])["title"];
-//         }
-//         else if(typeInteractive == "list_reply"){
-//             text = (interactiveObject["list_reply"])["title"];
-//         }else{
-//             myConsole.log("sin mensaje");
-//         }
-//     }else{
-//         myConsole.log("sin mensaje");
-//     }
-//     return text;
-// }
+        if(typeInteractive == "button_reply"){
+            text = (interactiveObject["button_reply"])["title"];
+        }
+        else if(typeInteractive == "list_reply"){
+            text = (interactiveObject["list_reply"])["title"];
+        }else{
+            myConsole.log("sin mensaje");
+        }
+    }else{
+        myConsole.log("sin mensaje");
+    }
+    return text;
+}
 
-// module.exports = {
-//     VerifyToken,
-//     ReceivedMessage
-// }
+module.exports = {
+    VerifyToken,
+    ReceivedMessage
+}
