@@ -5,7 +5,7 @@ const processMessage = require("../shared/processMessage");
 
 const VerifyToken = (rep, res) => {
     try{
-        var accessToken = "RTQWWTVHBDE23423423424";
+        var accessToken = "EAA2zdUfMvroBAG4YVd7EBaHjNf3IUZBnJ3CU2Hl0wjAlmEItnR17ZBd0rB4yB63ufVHPAIwdOUXHbCHcZBMY0IOHPZAZCzOowTk1X8dZCm3fFUhV7QAXAlVrE56VyZCtO01TTLOLuHp6RZBWn0XztosBPLNsMrqBLOIZAVehuHkdXnKaymfsJuOb3x7ZCQJk8saxR5ktnzZAPZCh9hnb4qcHPaI5";
         var token = req.query["hub.verify_token"];
         var challenge = req.query["hub.challenge"];
     
