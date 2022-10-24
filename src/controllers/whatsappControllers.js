@@ -1,40 +1,34 @@
+const VerifyToken = (rep, res) => {
+  try {
+    var accessToken = "RTQWWTVHBDEJHJKIKIKNDS9090DS";
+    var token = req.query["hub.verify_token"];
+    var challenge = req.query["hub.challenge"];
 
-const  VerifyToken = (rep,res) => {
-    try{
-        var accessToken = "RTQWWTVHBDEJHJKIKIKNDS9090DS";
-        var token = req.query["hub.verify_token"];
-        var challenge = req.query["hub.challenge"];
-
-        if(challenge != null && token != null && token == accessToken){
-            res.send(challenge);
-        }else{
-            res.status(400).send();
-        }
-
-    }catch(e){
-        res.status(400).send();
+    if (challenge != null && token != null && token == accessToken) {
+      res.send(challenge);
+    } else {
+      res.status(400).send();
     }
+  } catch (e) {
+    res.status(400).send();
+  }
+};
 
-}
-
-const  ReceivedMessage = (rep,res) => {
-    res.send("hola mensaje recibido");
-}
-
+const ReceivedMessage = (rep, res) => {
+  console.info("Hola received");
+  res.send("hola mensaje recibido");
+};
 
 module.exports = {
-    VerifyToken,
-    ReceivedMessage
-}
-
-
-
+  VerifyToken,
+  ReceivedMessage,
+};
 
 // const fs = require("fs");
 // const myConsole = new console.Console(fs.createWriteStream("./logs.txt"));
 // const processMessage = require("../shared/processMessage");
 // const VerifyToken = (req, res) => {
-    
+
 //     try{
 //         var accessToken = "RTQWWTVHBDEJHJKIKIKNDS9090DS";
 //         var token = req.query["hub.verify_token"];
@@ -63,12 +57,12 @@ module.exports = {
 //             var number = messages["from"];
 
 //             var text = GetTextUser(messages);
-            
+
 //             if(text != ""){
 //                 processMessage.Process(text, number);
-//             } 
+//             }
 
-//         }        
+//         }
 
 //         res.send("EVENT_RECEIVED");
 //     }catch(e){
@@ -87,7 +81,7 @@ module.exports = {
 
 //         var interactiveObject = messages["interactive"];
 //         var typeInteractive = interactiveObject["type"];
-        
+
 //         if(typeInteractive == "button_reply"){
 //             text = (interactiveObject["button_reply"])["title"];
 //         }
