@@ -1,6 +1,11 @@
+
+const fs = require("fs");
+const myConsole = new console.Console(fs.createWriteStream("./logs.txt"));
+
+
 const VerifyToken = (rep, res) => {
     try{
-        var accessToken = "RTQWWTVHBDEJHJKIKIKNDS9090DS";
+        var accessToken = "RTQWWTVHBDE23423423424";
         var token = req.query["hub.verify_token"];
         var challenge = req.query["hub.challenge"];
     
@@ -16,10 +21,31 @@ const VerifyToken = (rep, res) => {
 
 };
 
-const ReceivedMessage = (rep, res) => {
-  console.info("Hola received");
-  res.send("hola mensaje recibido");
-};
+const ReceivedMessage = (req, res) => {
+    try{
+        var entry = (req.body["entry"])[0];
+        var changes = (entry["changes"])[0];
+        var value = changes["value"];
+        var messageObject = value["messages"];
+
+        if(typeof messageObject != "undefined"){
+            var messages = messageObject[0];
+            var number = messages["from"];
+
+            var text = GetTextUser(messages);
+
+            if(text != ""){
+                processMessage.Process(text, number);
+            }
+
+        }
+
+        res.send("EVENT_RECEIVED");
+    }catch(e){
+        myConsole.log(e);
+        res.send("EVENT_RECEIVED");
+    }
+}
 
 module.exports = {
   VerifyToken,
