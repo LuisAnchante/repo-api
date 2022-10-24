@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'apiwhatsapp-node'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_CE5B300461354946B344818E29929930 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BC3C8108C8BB46249C807C3AAEC61380 }}
           package: .
