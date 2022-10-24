@@ -1,17 +1,19 @@
 const VerifyToken = (rep, res) => {
-  try {
-    var accessToken = "RTQWWTVHBDEJHJKIKIKNDS9090DS";
-    var token = req.query["hub.verify_token"];
-    var challenge = req.query["hub.challenge"];
-
-    if (challenge != null && token != null && token == accessToken) {
-      res.send(challenge);
-    } else {
-      res.status(400).send();
+    try{
+        var accessToken = "RTQWWTVHBDEJHJKIKIKNDS9090DS";
+        var token = req.query["hub.verify_token"];
+        var challenge = req.query["hub.challenge"];
+    
+        if(challenge != null && token != null && token == accessToken){
+            res.send(challenge);
+        }else{
+            res.status(400).send();
+        }
+    
+    }catch(e){
+        res.status(400).send();
     }
-  } catch (e) {
-    res.status(400).send();
-  }
+
 };
 
 const ReceivedMessage = (rep, res) => {
