@@ -14,12 +14,7 @@ const  VerifyToken = (rep,res) => {
     }catch(e){
         res.status(400).send();
     }
-}
 
-
-
-
-    res.send("hola mensaje verificado");
 }
 
 const  ReceivedMessage = (rep,res) => {
